@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+		<bean id="memController" class="com.itwillbs.myweb.MemController" >
+<!-- 			<property name="memService"> -->
+<!-- 				<ref local="memService"/> -->
+<!-- 			</property> -->
+				<property name="memService" ref="memService"></property>
+		</bean>
+		<bean id="memService" class="com.itwillbs.service.MemServiceImpl">
+<!-- 			<property name="memDAO"> -->
+<!-- 				<ref local="memDAO"/> -->
+<!-- 			</property> -->
+				<property name="memDAO" ref="memDAO"></property>
+		</bean>
+		<bean id="memDAO" class="com.itwillbs.dao.MemDAOImpl">
+			<property name="dataSource" ref="dataSource"></property>
+		</bean>
+		
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+			<property name="url" value="jdbc:mysql://localhost:3306/jspdb1"/>
+			<property name="username" value="root"/>
+			<property name="password" value="1234"/>
+		</bean>
+</beans>
